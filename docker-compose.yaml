@@ -10,15 +10,21 @@ services:
       - 8000:8000
     env_file:
       - ./.env.dev
+    networks:
+      - network1
     depends_on:
       - db
   db:
     image: postgres:15
     volumes:
-    - postgres_data:/var/lib/postgresql/data/
+      - postgres_data:/var/lib/postgresql/data/
     environment:
-    - POSTGRES_USER=postgres
-    - POSTGRES_PASSWORD=khiem123
-    - POSTGRES_DB=cardealer_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=khiem123
+      - POSTGRES_DB=cardealer_db
+    networks:
+      - network1
 volumes:
   postgres_data:
+networks:
+  network1:
