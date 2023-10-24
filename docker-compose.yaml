@@ -11,7 +11,7 @@ services:
     env_file:
       - ./.env.dev
     networks:
-      - network1
+      - network
     depends_on:
       - db
   db:
@@ -24,6 +24,7 @@ services:
       - POSTGRES_DB=cardealer_db
     networks:
       - network
+      - postgres
   pgadmin:
     container_name: pgadmin_container
     image: dpage/pgadmin4
@@ -45,3 +46,4 @@ volumes:
 networks:
   network:
   postgres:
+   driver: brigde
